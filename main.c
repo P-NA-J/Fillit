@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/11 16:59:29 by pauljull          #+#    #+#             */
-/*   Updated: 2019/01/25 17:12:24 by pauljull         ###   ########.fr       */
+/*   Created: 2019/01/25 13:39:51 by pauljull          #+#    #+#             */
+/*   Updated: 2019/01/25 14:57:20 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
+#include "fillit.h"
 
-# define FILLIT_H
+int	main(int ac, char **av)
+{
+	int		n_tetri;
 
-#include "./libft/libft.h"
-#include <stdio.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdlib.h>
-#endif
+	if (ac != 2)
+		return (ft_usage());
+	if (ft_read(av[1]) < 0)
+		return (ft_error());
+	if (!ft_check_all())
+	if (!fillit(file))
+}
