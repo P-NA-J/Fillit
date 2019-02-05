@@ -19,17 +19,19 @@ fclean: clean
 
 re: fclean all
 
-test:
-	for number in 1 2 3 4; do \
-		echo $$number; \
-	done
+unmap:
+	rm -f Map/*
 
 gen:
 	for i in `seq 1 ${test}` ; do \
-		for j in `seq 1 50` ; do \
-			echo "$$i $$j"; \
-			./binaire/gen valid $$i > Map/valid_$$i\_$$j; \
-			cat Map/valid_$$i\_$$j; \
+		for	j in `seq 1 26` ; do \
+			for k in `seq 1 50` ; do \
+				./binaire/gen valid $$j > Map/valid_$$j\_$$k; \
+				./binaire/gen invalid $$j > Map/invalid_$$j\_$$k; \
+			done \
 		done \
 	done \
-	
+
+parser:
+	$(VAR) = `./binaire/parser Map/valid_1_1`
+	echo $(VAR)
