@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 19:56:03 by pauljull          #+#    #+#             */
-/*   Updated: 2019/01/28 20:22:40 by pauljull         ###   ########.fr       */
+/*   Updated: 2019/02/11 09:10:30 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,26 +35,6 @@ int	*database(void)
 	tab[16] = 562;
 	tab[17] = 305;
 	tab[18] = 39;
-	return (tab)
+	return (tab);
 }
 
-int	check_file(int *tetri, int tab[19], int n_tetri)
-{
-	int i;
-	int j;
-	int check;
-
-	i = 0;
-	j = 0;
-	check = 0;
-	while (i < n_tetri)
-	{
-		while (j < 19)
-			if (tetri[i] == tab[j++])
-				check += 1;
-		i += 1;
-	}
-	if (check != n_tetri)
-		return (0);
-	return (1);
-}

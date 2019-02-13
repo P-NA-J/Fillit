@@ -6,14 +6,14 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 16:57:09 by pauljull          #+#    #+#             */
-/*   Updated: 2019/01/25 14:57:23 by pauljull         ###   ########.fr       */
+/*   Updated: 2019/02/11 09:59:03 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
-#include <fcntl.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include "../include/fillit.h"
+
+int ft_error(void)
+{
+    ft_putendl("ERROR");
+    return (0);
+}
