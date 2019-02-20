@@ -10,11 +10,12 @@ for i in  `seq 1 $n_test` ; do \
 		for k in `seq 1 50` ; do \
 			./binaire/gen valid $j > Map/valid_$j\_$k; \
 			./binaire/gen invalid $j > Map/invalid_$j\_$k; \
-			var1=$(./binaire/parser Map/valid_$j\_$k); \
-			var2=$(./binaire/parser Map/invalid_$j\_$k); \
-        	if [ $var1 = "VALID" ]
+			var1=$(./fillit Map/valid_$j\_$k); \
+			var2=$(./fillit Map/invalid_$j\_$k); \
+        	if [ "$var1" = "VALID" ]
         	then
-            	if [ $var2 = "INVALID" ]
+				let "var4 += 1";
+            	if [ "$var2" = "INVALID" ]
             	then
                 	let "var3 += 1"; \
             	fi
@@ -23,7 +24,7 @@ for i in  `seq 1 $n_test` ; do \
 	done \
 done \
 
-if [ $var3 = $n_file ]
+if [ "$var3" = "$n_file" ]
 then
 	echo "Le parser fonctionne"
 else

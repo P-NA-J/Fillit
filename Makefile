@@ -1,17 +1,14 @@
 NAME := fillit
 CC := gcc
 FLAGS := -Wall -Wextra -Werror
-SRC := parsing.c
+SRC := source/main.c
 OBJ := $(SRC:.c=.o)
-
+LIB := libft/libft.a
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(FLAGS) -o $(NAME) $^
-
-read: main.o ft_read.o ft_error.o
-	make libft
-	$(CC) $(FLAGS) -o $@ $^ ./libft/libft.a
+	$(CC) $(FLAGS) -o $(NAME) $^ $(LIB)
+	rm source/*.o
 
 libft:
 	make -C ./libft/

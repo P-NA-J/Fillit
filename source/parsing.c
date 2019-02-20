@@ -6,10 +6,11 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 13:11:49 by pauljull          #+#    #+#             */
-/*   Updated: 2019/02/11 09:10:37 by pauljull         ###   ########.fr       */
+/*   Updated: 2019/02/20 17:01:55 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../include/fillit.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -61,7 +62,7 @@ int	convert_tetri(char *file, int decal)
 	return (tetri_j);
 }
 
-int	parser_tetri(char *file, int i_tetri, int tetri)
+int	parser_tetri(char *file, int i_tetri, int tetri, char letter)
 {
 	int	line;
 	int	raw;
@@ -78,20 +79,22 @@ int	parser_tetri(char *file, int i_tetri, int tetri)
 	line = i / 5 + 1;
 	decal = i_tetri + 5 * (line - 1) + raw - 1;
 	tetri = convert_tetri(&file[decal], decal);
+	letter = i_tetri / 21 + 'A';
 	return (tetri);
 }
 
-int	*parser_file(char *file, int n_tetri)
+t_tetri	*parser_file(char *file, int n_tetri)
 {
-	int i;
-	int	*tetri;
+	int 	i;
+	t_tetri	*tetri;
 
-	if (!(tetri = (int *)malloc(sizeof(int) * n_tetri)))
+	if (!(tetri = ft_init_list(n_tetri)))
 		return (0);
 	i = 0;
 	while (i < n_tetri)
 	{
-		tetri[i] = parser_tetri(file, i * 21, tetri[i]);
+		tetri->tetri = parser_tetri(file, i * 21, tetri->tetri, tetri->letter);
+		set_tetri(tetri);
 		i += 1;
 	}
 	return (tetri);

@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 16:59:29 by pauljull          #+#    #+#             */
-/*   Updated: 2019/02/11 09:46:48 by pauljull         ###   ########.fr       */
+/*   Updated: 2019/02/14 10:45:17 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,26 @@
 #include <fcntl.h>
 #include <stdlib.h>
 
-typedef struct  s_map
+typedef struct      s_map
 {
-    int         line;
-    int         index;
-}               t_map;
+    int             line;
+    int             index;
+    int             width;
+    struct s_map    *next;
+    struct s_map    *prev;
+}                   t_map;
 
-typedef struct  s_tetri
+typedef struct      s_tetri
 {
-    int         tetri;
-    char        letter;
-    char        pos_x;
-    char        pos_y;
-}               t_tetri;
+    int             tetri;
+    char            letter;
+    char            pos_x;
+    char            pos_y;
+    char            length;
+    char            width;
+    struct s_tetri  *next;
+    struct s_tetri  *prev;
+}                   t_tetri;
 
 int             ft_error(void);
 int             ft_read(int fd, char **file_ref);

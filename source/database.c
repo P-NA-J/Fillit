@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 19:56:03 by pauljull          #+#    #+#             */
-/*   Updated: 2019/02/11 09:10:30 by pauljull         ###   ########.fr       */
+/*   Updated: 2019/02/14 14:25:48 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 int	*database(void)
 {
-	int tab[19];
+	int *tab;
 
+	if (!(tab = malloc(19 * sizeof(int))))
+		return (NULL);
 	tab[0] = 4369;
 	tab[1] = 15;
 	tab[2] = 51;
@@ -38,3 +40,19 @@ int	*database(void)
 	return (tab);
 }
 
+int	power(int base, int exposant)
+{
+	int count;
+	int result;
+
+	count = 1;
+	if (exposant == 0)
+		return (1);
+	result = base;
+	while (count < exposant)
+	{
+		result *= base;
+		count += 1;
+	}
+	return (result);
+}
