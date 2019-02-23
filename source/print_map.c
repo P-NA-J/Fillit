@@ -6,23 +6,11 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:17:47 by pauljull          #+#    #+#             */
-/*   Updated: 2019/02/20 14:46:52 by pauljull         ###   ########.fr       */
+/*   Updated: 2019/02/21 06:04:06 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	power(int a, int b)
-{
-	int result;
-	int i;
-
-	result = a;
-	i = 1;
-	if (b == 0)
-		return (1);
-	while (i++ < b)
-		result *= a;
-	return (result);
-}
+#include "../include/fillit.h"
 
 int		print_fblock_bit(t_tetri **tetri_ref)
 {
@@ -67,7 +55,7 @@ void	print_map_final(t_tetri *tetri, t_map *map)
 
 	head = tetri;
 	mask = 1;
-	while (map)
+	while (map->next)
 	{
 		while (mask < power(2, map->width))
 		{	

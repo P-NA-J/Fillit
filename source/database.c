@@ -6,11 +6,11 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 19:56:03 by pauljull          #+#    #+#             */
-/*   Updated: 2019/02/14 14:25:48 by pauljull         ###   ########.fr       */
+/*   Updated: 2019/02/20 23:32:45 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "../include/fillit.h"
 
 int	*database(void)
 {
@@ -38,21 +38,4 @@ int	*database(void)
 	tab[17] = 305;
 	tab[18] = 39;
 	return (tab);
-}
-
-int	power(int base, int exposant)
-{
-	int count;
-	int result;
-
-	count = 1;
-	if (exposant == 0)
-		return (1);
-	result = base;
-	while (count < exposant)
-	{
-		result *= base;
-		count += 1;
-	}
-	return (result);
 }
