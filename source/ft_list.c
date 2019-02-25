@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 13:11:35 by pauljull          #+#    #+#             */
-/*   Updated: 2019/02/21 18:09:03 by pauljull         ###   ########.fr       */
+/*   Updated: 2019/02/25 23:24:09 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,14 @@ t_map    *ft_lpb_map(t_map **map_ref, int width, int index)
     {
         l_map = node;
         l_map->prev = NULL;
+        l_map->head = node;
         return (l_map);
     }
     while (l_map->next)
         l_map = l_map->next;
     l_map->next = node;
     node->prev = l_map;
+    node->head = l_map->head;
 	return (save);
 }
 
@@ -68,7 +70,7 @@ t_tetri *ft_init_list(int n_tetri)
     t_tetri *tmp;
     int    count;
 
-    count = 0;
+    count = 1;
 	tmp = NULL;
     while (count <= n_tetri)
     {

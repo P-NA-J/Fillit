@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 14:57:39 by pauljull          #+#    #+#             */
-/*   Updated: 2019/02/21 16:59:53 by pauljull         ###   ########.fr       */
+/*   Updated: 2019/02/25 22:50:47 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int multi_check(t_tetri *tetri, t_map *map)
 	i = 1;
 	while (i <= tetri->length)
 	{
-		if ((map->line + (set_fblock_bit(tetri->tetri, i) >> (i - 1) * 4)) != (map->line | set_fblock_bit(tetri->tetri, i) >> (i - 1) * 4))
+		if ((map->line + (set_fblock_bit(tetri->tetri, i, tetri->decal) >> (i - 1) * 4)) != (map->line | set_fblock_bit(tetri->tetri, i, tetri->decal) >> (i - 1) * 4))
 			return (0);
 		map = map->next;
 		i += 1;

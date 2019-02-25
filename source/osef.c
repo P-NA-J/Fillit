@@ -1,5 +1,31 @@
 #include "../include/fillit.h"
 
+void	print_list_map(t_map *map)
+{
+	while (map)
+	{
+		print_bit_int(map->line);
+		printf("index = %d\n", map->index);
+		printf("width = %d\n", map->width);
+		printf("Head = %p\n", map->head);
+		map = map->next;
+	}
+}
+
+void	print_list_tetri(t_tetri *tetri)
+{
+	while (tetri)
+	{
+		printf("### Debut du tetri ###\n");
+		printf("tetri :\n");
+		print_tetri_bit(tetri->tetri);
+		printf("tetri->pos_x = ");
+		print_bit_int(tetri->pos_x);
+		printf("tetri->pos_y = %d\n", tetri->pos_y);
+		tetri = tetri->next;
+	}
+}
+
 void	bilan_tetri(t_tetri **tetri)
 {
 	int i;

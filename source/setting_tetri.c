@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 22:59:57 by pauljull          #+#    #+#             */
-/*   Updated: 2019/02/21 02:58:17 by pauljull         ###   ########.fr       */
+/*   Updated: 2019/02/25 22:51:02 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	set_tetri(t_tetri *tetri)
 {
 	tetri->length = set_tetri_length(tetri->tetri);
 	tetri->width = set_tetri_width(tetri->tetri, tetri->length);
+	tetri->decal = 0;
 }
 
 int		analyze_tetri_line(int tetri, int line)
@@ -25,7 +26,7 @@ int		analyze_tetri_line(int tetri, int line)
 
 	i = 0;
 	mask = 1;
-	line = set_fblock_bit(tetri , line);
+	line = set_fblock_bit(tetri , line, 0);
 	while (mask & line)
 	{	
 		i += 1;
@@ -39,7 +40,7 @@ int		set_tetri_width(int tetri, int length)
 	int line;
 	int j;
 
-	line = set_fblock_bit(tetri, 1) | ((set_fblock_bit(tetri, 2) >> 4) | ((set_fblock_bit(tetri, 3) >> 8) | (set_fblock_bit(tetri, 4) >> 12)));
+	line = set_fblock_bit(tetri, 1, 0) | ((set_fblock_bit(tetri, 2, 0) >> 4) | ((set_fblock_bit(tetri, 3, 0) >> 8) | (set_fblock_bit(tetri, 4, 0) >> 12)));
 	j = analyze_tetri_line(line, 1);	
 	return (j);
 }
@@ -51,20 +52,23 @@ int		set_tetri_length(int tetri)
 	i = 1;
 	while (i <= 4)
 	{
-		if (!set_fblock_bit(tetri, i))
+		if (!set_fblock_bit(tetri, i, 0))
 			return (i - 1);
 		i += 1;
 	}
 	return (i - 1);
 }
 
-int	set_fblock_bit(int tetri, int block)
+int	set_fblock_bit(int tetri, int block, int decal)
 {
 	int mask;
 	int i;
 	int bit;
 
-	mask = 1 << ((block - 1) * 4);
+	mask = 1;
+	while (mask < power(2, decal))
+		mask <<= 1;
+	mask  <<= ((block - 1) * 4);
 	i = 0;
 	bit = 0;
 	while (i < 4)

@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 13:11:49 by pauljull          #+#    #+#             */
-/*   Updated: 2019/02/21 02:09:41 by pauljull         ###   ########.fr       */
+/*   Updated: 2019/02/24 18:57:51 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ t_tetri	*parser_file(char *file, int n_tetri)
 	t_tetri	*tetri;
 	t_tetri *head;
 
+	printf("n_tetri = %d\n", n_tetri);
 	if (!(tetri = ft_init_list(n_tetri)))
 		return (0);
 	head = tetri;

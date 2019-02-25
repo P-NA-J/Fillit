@@ -31,7 +31,7 @@ libft:
 	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
-	rm -f *.o
+	rm -f source/*.o
 
 fclean: clean
 	rm -f $(NAME)
