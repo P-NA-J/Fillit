@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:17:47 by pauljull          #+#    #+#             */
-/*   Updated: 2019/02/21 06:04:06 by pauljull         ###   ########.fr       */
+/*   Updated: 2019/02/27 02:55:24 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int		print_fblock_bit(t_tetri **tetri_ref)
 	int	line_tetri;
 	int mask;
 	t_tetri *l_tetri;
-
 
 	l_tetri = *tetri_ref;
 	line_tetri = l_tetri->tetri;
@@ -55,7 +54,7 @@ void	print_map_final(t_tetri *tetri, t_map *map)
 
 	head = tetri;
 	mask = 1;
-	while (map->next)
+	while (map)
 	{
 		while (mask < power(2, map->width))
 		{	
@@ -68,11 +67,38 @@ void	print_map_final(t_tetri *tetri, t_map *map)
 			}
 			else
 				mask <<= print_fblock_bit(&tetri);
-			tetri = head;
+			if (!tetri)
+				tetri = head;
+			else
+				tetri = tetri->next;
 		}
 		ft_putchar('\n');
 		mask = 1;
 		tetri = head;
 		map = map->next;
+	}
+}
+
+void	ft_print_map_final(t_tetri *tetri, t_map *map)
+{
+	int mask
+
+	while (map)
+	{
+		while (mask < (1 << map->width))
+		{
+			if (!(mask & map->line))
+			{
+				write(1, ".", 1);
+
+			}
+			else
+			{
+				if (!check(tetri, map->index, mask))
+					tetri = tetri->next;
+				else
+					mask <<= print_block(tetri);
+			}
+		}
 	}
 }

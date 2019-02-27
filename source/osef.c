@@ -19,7 +19,7 @@ void	print_list_tetri(t_tetri *tetri)
 		printf("### Debut du tetri ###\n");
 		printf("tetri :\n");
 		print_tetri_bit(tetri->tetri);
-		printf("tetri->pos_x = ");
+		printf("tetri->pos_x = \n");
 		print_bit_int(tetri->pos_x);
 		printf("tetri->pos_y = %d\n", tetri->pos_y);
 		tetri = tetri->next;
