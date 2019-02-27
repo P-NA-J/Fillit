@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 13:39:51 by pauljull          #+#    #+#             */
-/*   Updated: 2019/02/27 02:13:33 by pauljull         ###   ########.fr       */
+/*   Updated: 2019/02/27 04:51:00 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	main(int ac, char **av)
 	}
 	tetri = save;
 	print_list_tetri(tetri);
-	print_map_final(tetri, map);
+	print_bit_int(tetri->tetri);
+	ft_print_map_final(tetri, map);
 	return (0);
 }
