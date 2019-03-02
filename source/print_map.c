@@ -40,7 +40,7 @@ int		print_block(t_tetri *tetri)
 	tetri->pos_y += 1;
 	if (tetri->tetri)
 	{
-		mask = tetri->pos_x;
+		mask = 1;
 		while (!(mask & tetri->tetri))
 			mask <<= 1;
 	}

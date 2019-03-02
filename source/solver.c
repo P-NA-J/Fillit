@@ -11,6 +11,14 @@
 /* ************************************************************************** */
 
 #include "../include/fillit.h"
+#define KNRM  "\x1B[0m"
+#define KRED  "\x1B[31m"
+#define KGRN  "\x1B[32m"
+#define KYEL  "\x1B[33m"
+#define KBLU  "\x1B[34m"
+#define KMAG  "\x1B[35m"
+#define KCYN  "\x1B[36m"
+#define KWHT  "\x1B[37m"
 
 t_map	*reset_map(t_tetri *tetri, t_map *map)
 {
@@ -72,7 +80,62 @@ void	solver_iteratif(t_tetri **tetri_ref, t_map **map_ref)
 	}
 }
 
+
+
 void solver_recursif(t_tetri *tetri, t_map *map)
+{
+	print_map_bit(map->head);
+	if (multi_check(tetri, map))
+	{
+		set_tetri_map(&tetri, &map);
+		print_map_bit(map->head);
+		if (tetri->next)
+			solver_recursif(tetri->next, map->head);
+		else
+			printf(KGRN "La derniere piece a été posé\n");
+	}
+	else if (tetri->pos_x << (1 + tetri->width) <= power(2, map->width))
+	{
+		tetri->tetri <<= 1;
+		tetri->pos_x <<= 1;
+		tetri->decal += 1;
+		solver_recursif(tetri, map);
+	}
+	else if (map->next && tetri->length <= (map->width - map->next->index))
+	{
+		map = map->next;
+		tetri->tetri >>= tetri->decal;
+		tetri->pos_y += 1;
+		tetri->pos_x = 1;
+		tetri->decal = 0;
+		solver_recursif(tetri, map);
+	}
+	else if (!tetri->prev)
+	{
+		while (map->next)
+		{
+			map->line = 0;
+			map = map->next;
+		}
+		map->line = 0;
+		map = ft_lpb_map(&map, map->width + 1, map->index + 1);
+		solver_recursif(tetri, map);
+	}
+	else
+	{
+		map = reset_map(tetri->prev, map->head);
+		tetri->prev->tetri <<= 1;
+		tetri->prev->pos_x <<= 1;
+		tetri->prev->decal += 1;
+		solver_recursif(tetri->prev, map);
+	}
+}
+
+
+
+
+
+void solver_recursif_paul(t_tetri *tetri, t_map *map)
 {
 	if (multi_check(tetri, map))
 	{

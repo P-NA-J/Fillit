@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include "../include/fillit.h"
-
+#define KNRM  "\x1B[0m"
 
 
 int	main(int ac, char **av)
@@ -47,8 +47,9 @@ int	main(int ac, char **av)
 		tetri = tetri->next;
 	}
 	tetri = save;
-	print_list_tetri(tetri);
-	print_bit_int(tetri->tetri);
+//	print_list_tetri(tetri);
+//	print_bit_int(tetri->tetri);
+	printf(KNRM "\n");
 	ft_print_map_final(tetri, map);
 	return (0);
 }

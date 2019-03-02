@@ -77,7 +77,7 @@ void	print_map_bit(t_map *map)
 		mask = 1;
 		map = map->next;
 	}
-	printf("\n");
+	write(1, "\n", 1);
 }
 
 void	print_tetri_bit(int tetri)
