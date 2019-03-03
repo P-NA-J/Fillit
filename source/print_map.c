@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:17:47 by pauljull          #+#    #+#             */
-/*   Updated: 2019/02/27 04:54:05 by pauljull         ###   ########.fr       */
+/*   Updated: 2019/03/03 16:53:37 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,19 @@ int		print_block(t_tetri *tetri)
 	int swipe;
 
 	swipe = 0;
-	mask = tetri->pos_x;
+	mask = (tetri->pos_x >> first_one((set_fblock_bit(tetri->tetri, 1, tetri->decal))));
 	while (mask & tetri->tetri)
 	{
 		write(1, &tetri->letter, 1);
 		mask <<= 1;
 		swipe += 1;
 	}
-	tetri->tetri >>= 4;
+	tetri->tetri >>= (4 + tetri->decal);
 	tetri->pos_y += 1;
 	if (tetri->tetri)
 	{
-		mask = 1;
-		while (!(mask & tetri->tetri))
-			mask <<= 1;
+		mask >>= swipe;
+		mask = (tetri->pos_x >> first_one((set_fblock_bit(tetri->tetri, 1, tetri->decal))));
 	}
 	tetri->pos_x = mask;
 	return (swipe);

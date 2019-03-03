@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 14:57:39 by pauljull          #+#    #+#             */
-/*   Updated: 2019/02/26 22:25:53 by pauljull         ###   ########.fr       */
+/*   Updated: 2019/03/03 11:59:51 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int multi_check(t_tetri *tetri, t_map *map)
 
 	i = 1;
 	if (tetri->width + tetri->decal > map->width)
+		return (0);
+	if (tetri->length > (map->width - map->index))
 		return (0);
 	while (i <= tetri->length)
 	{

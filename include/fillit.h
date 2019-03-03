@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 16:59:29 by pauljull          #+#    #+#             */
-/*   Updated: 2019/02/27 03:16:59 by pauljull         ###   ########.fr       */
+/*   Updated: 2019/03/03 20:10:05 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@
 
 typedef struct      s_map
 {
-    int             line;
-    int             index;
-    int             width;
+    unsigned int             line;
+    unsigned int             index;
+    unsigned int             width;
     struct s_map    *next;
     struct s_map    *prev;
     struct s_map    *head;
@@ -32,13 +32,13 @@ typedef struct      s_map
 
 typedef struct      s_tetri
 {
-    int             tetri;
+    unsigned int             tetri;
     char            letter;
-    char            pos_x;
-    char            pos_y;
+    unsigned int    pos_x;
+    unsigned int            pos_y;
     char            length;
     char            width;
-    char            decal;
+    unsigned int            decal;
     struct s_tetri  *next;
     struct s_tetri  *prev;
 }                   t_tetri;
@@ -83,5 +83,7 @@ void	            print_tetri_bit(int tetri);
 void	            print_map_bit(t_map *map);
 void	            print_tetri(t_tetri *tetri);
 void	            bilan_tetri(t_tetri **tetri);
+void	bilan_tour(t_tetri *tetri, t_map *map);
+t_map	*grow_up_map(t_map *map);
 
 #endif

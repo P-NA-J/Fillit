@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 23:06:38 by pauljull          #+#    #+#             */
-/*   Updated: 2019/02/25 22:52:55 by pauljull         ###   ########.fr       */
+/*   Updated: 2019/03/03 16:53:46 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,18 @@
 int		first_one(int tetri)
 {
 	int mask;
+	int count;
 
 	mask = 1;
-	print_bit_int(tetri);
+	count = 0;
 	while (!(mask & tetri))
 	{
 		mask <<= 1;
+		count += 1;
 	}
-	return (mask);
+	if (count > 0)
+		return (count - 1);
+	return (count);
 }
 
 void	set_tetri_map(t_tetri **tetri, t_map **map)

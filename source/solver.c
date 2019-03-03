@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:16:53 by pauljull          #+#    #+#             */
-/*   Updated: 2019/02/26 22:27:54 by pauljull         ###   ########.fr       */
+/*   Updated: 2019/03/03 20:42:56 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,50 @@
 #define KCYN  "\x1B[36m"
 #define KWHT  "\x1B[37m"
 
+t_tetri	*clean_list_tetri(t_tetri *tetri)
+{
+	t_tetri *save;
+
+	while (tetri->prev)
+		tetri = tetri->prev;
+	save = tetri;
+	while (tetri)
+	{
+		tetri->tetri >>= tetri->decal;
+		tetri->pos_x = 1;
+		tetri->pos_y = 0;
+		tetri->decal = 0;
+		tetri = tetri->next;
+	}
+	return (save);
+}
+
+void	reset_tetri(t_tetri *tetri)
+{
+	tetri->tetri >>= tetri->decal;
+	tetri->pos_x = 1;
+	tetri->pos_y = 0;
+	tetri->decal = 0;
+}
+
+t_map	*grow_up_map(t_map *map)
+{
+	t_map *save;
+
+	save = map;
+	while (map->next)
+	{
+		map->line = 0;
+		map->width += 1;
+		map = map->next;
+	}
+	map->line = 0;
+	map->width += 1;
+	map = ft_lpb_map(&map->head, map->width, map->index + 1);
+	map = save;
+	return (save);
+}
+
 t_map	*reset_map(t_tetri *tetri, t_map *map)
 {
 	char i;
@@ -31,12 +75,14 @@ t_map	*reset_map(t_tetri *tetri, t_map *map)
 		map = map->next;
 	while (i <= tetri->length)
 	{
-		
 		map->line ^= (set_fblock_bit(tetri->tetri, i, tetri->decal) >> (i - 1) * 4);	
 		map = map->next;
 		i += 1;
 	}
-	return (save);
+	map = save->head;
+	while (map->index != tetri->pos_y)
+		map = map->next;
+	return (map);
 }
 
 void	solver_iteratif(t_tetri **tetri_ref, t_map **map_ref)
@@ -84,21 +130,36 @@ void	solver_iteratif(t_tetri **tetri_ref, t_map **map_ref)
 
 void solver_recursif(t_tetri *tetri, t_map *map)
 {
-	print_map_bit(map->head);
+	static int i;
+	t_map		*save;
+
+	save = map;
+		ft_putstr("######### TOUR No ");
+		ft_putnbr(i);
+		ft_putstr(" #########");
+		ft_putchar('\n');
+		print_map_bit(map->head);
+		bilan_tour(tetri, map);
 	if (multi_check(tetri, map))
 	{
 		set_tetri_map(&tetri, &map);
-		print_map_bit(map->head);
+		i += 1;
 		if (tetri->next)
 			solver_recursif(tetri->next, map->head);
 		else
-			printf(KGRN "La derniere piece a été posé\n");
+		{
+//			ft_putendl("La derniere piece a été posé");
+			ft_putnbr(i);
+			ft_putchar('\n');
+			print_map_bit(map->head);
+		}
 	}
 	else if (tetri->pos_x << (1 + tetri->width) <= power(2, map->width))
 	{
 		tetri->tetri <<= 1;
 		tetri->pos_x <<= 1;
 		tetri->decal += 1;
+		i += 1;
 		solver_recursif(tetri, map);
 	}
 	else if (map->next && tetri->length <= (map->width - map->next->index))
@@ -108,62 +169,25 @@ void solver_recursif(t_tetri *tetri, t_map *map)
 		tetri->pos_y += 1;
 		tetri->pos_x = 1;
 		tetri->decal = 0;
+		i += 1;
 		solver_recursif(tetri, map);
 	}
 	else if (!tetri->prev)
 	{
-		while (map->next)
-		{
-			map->line = 0;
-			map = map->next;
-		}
-		map->line = 0;
-		map = ft_lpb_map(&map, map->width + 1, map->index + 1);
+		map = grow_up_map(map->head);
+		tetri = clean_list_tetri(tetri);
+		i += 1;
 		solver_recursif(tetri, map);
 	}
 	else
 	{
 		map = reset_map(tetri->prev, map->head);
-		tetri->prev->tetri <<= 1;
-		tetri->prev->pos_x <<= 1;
-		tetri->prev->decal += 1;
-		solver_recursif(tetri->prev, map);
-	}
-}
-
-
-
-
-
-void solver_recursif_paul(t_tetri *tetri, t_map *map)
-{
-	if (multi_check(tetri, map))
-	{
-		set_tetri_map(&tetri, &map);
-		if (tetri->next)
-			solver_recursif(tetri->next, map->head);
-	}
-	else if (tetri->pos_x << (1 + tetri->width) <= power(2, map->width))
-	{	
+		reset_tetri(tetri);
+		tetri = tetri->prev;
 		tetri->tetri <<= 1;
 		tetri->pos_x <<= 1;
 		tetri->decal += 1;
+		i += 1;
 		solver_recursif(tetri, map);
-	}
-	else if (map->next && tetri->length <= (map->width - map->next->index))
-	{
-		map = map->next;
-		tetri->tetri >>= tetri->decal;
-		tetri->pos_y += 1;
-		tetri->pos_x = 1;
-		tetri->decal = 0;
-		solver_recursif(tetri, map);
-	}
-	else
-	{
-		map = reset_map(tetri->prev, map->head);
-		tetri->prev->tetri <<= 1;
-		tetri->prev->decal += 1;
-		solver_recursif(tetri->prev, map);
 	}
 }
