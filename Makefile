@@ -1,20 +1,20 @@
 NAME := fillit
 CC := gcc
-FLAGS := -Wall -Wextra -Werror
-SRC := source/database.c \
-	   source/ft_check.c \
-	   source/ft_error.c \
-	   source/ft_list.c \
-	   source/ft_read.c \
-	   source/main.c \
-	   source/map_gen.c \
-	   source/math.c \
-	   source/osef.c \
-	   source/parsing.c \
-	   source/print_map.c \
-	   source/setting_tetri.c \
-	   source/setting_map.c \
-	   source/solver.c \
+FLAGS := -Wall -Wextra -Wframe-larger-than=1024 -g
+SRC := database.c \
+	   ft_check.c \
+	   ft_error.c \
+	   ft_list.c \
+	   ft_read.c \
+	   main.c \
+	   map_gen.c \
+	   math.c \
+	   osef.c \
+	   parsing.c \
+	   print_map.c \
+	   setting_tetri.c \
+	   setting_map.c \
+	   solver.c \
 		
 OBJ := $(SRC:.c=.o)
 LIB := libft/libft.a
@@ -31,15 +31,13 @@ libft:
 	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
-	rm -f source/*.o
+	rm -f $(OBJ)
 
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
 
-unmap:
-	rm -f Map/*
 
 .PHONY: libft
 
