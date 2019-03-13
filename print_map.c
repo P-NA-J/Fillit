@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 14:17:47 by pauljull          #+#    #+#             */
-/*   Updated: 2019/03/11 22:38:55 by pauljull         ###   ########.fr       */
+/*   Updated: 2019/03/12 16:22:44 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int		ft_print_set(t_tetri *tetri, t_map *map)
 {
-	int		mask;
-	int		i;
-	int		tmp;
+	unsigned int	mask;
+	unsigned int	i;
+	unsigned int	tmp;
 
 	i = 1;
 	mask = 1;
@@ -49,10 +49,9 @@ void	print_map_final(char **print, int width)
 
 void	print_tab_fill(t_tetri *tetri, char **print)
 {
-	int count_x;
-	int count_y;
-	int mask;
-	int line;
+	unsigned int count_x;
+	unsigned int count_y;
+	unsigned int mask;
 
 	mask = 1;
 	count_x = 0;

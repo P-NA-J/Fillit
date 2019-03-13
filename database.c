@@ -6,15 +6,15 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 19:56:03 by pauljull          #+#    #+#             */
-/*   Updated: 2019/03/11 21:13:50 by pauljull         ###   ########.fr       */
+/*   Updated: 2019/03/12 16:15:31 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int	*database(void)
+unsigned int	*database(void)
 {
-	int *tab;
+	unsigned int *tab;
 
 	if (!(tab = malloc(19 * sizeof(int))))
 		return (NULL);

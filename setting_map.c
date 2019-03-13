@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 23:06:38 by pauljull          #+#    #+#             */
-/*   Updated: 2019/03/11 21:48:59 by pauljull         ###   ########.fr       */
+/*   Updated: 2019/03/12 16:25:07 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ int		first_one(int tetri)
 
 void	set_tetri_map(t_tetri **tetri, t_map **map)
 {
-	int		mask;
-	int		i;
-	int		tmp;
-	t_tetri	*l_tetri;
-	t_map	*l_map;
+	int				mask;
+	unsigned int	i;
+	int				tmp;
+	t_tetri			*l_tetri;
+	t_map			*l_map;
 
 	l_tetri = *tetri;
 	l_map = *map;

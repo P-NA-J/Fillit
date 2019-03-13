@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 22:59:57 by pauljull          #+#    #+#             */
-/*   Updated: 2019/03/11 21:47:05 by pauljull         ###   ########.fr       */
+/*   Updated: 2019/03/12 16:24:34 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	set_tetri(t_tetri *tetri)
 {
 	tetri->length = set_tetri_length(tetri->tetri);
-	tetri->width = set_tetri_width(tetri->tetri, tetri->length);
+	tetri->width = set_tetri_width(tetri->tetri);
 	tetri->decal = 0;
 	tetri->pos_y = 0;
 	tetri->pos_x = 1;
@@ -37,7 +37,7 @@ int		analyze_tetri_line(int tetri, int line)
 	return (i);
 }
 
-int		set_tetri_width(int tetri, int length)
+int		set_tetri_width(int tetri)
 {
 	int line;
 	int j;

@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 21:19:03 by pauljull          #+#    #+#             */
-/*   Updated: 2019/03/11 21:45:30 by pauljull         ###   ########.fr       */
+/*   Updated: 2019/03/12 16:21:04 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	reset_map(t_tetri *tetri, t_map **map_ref)
 {
-	char	i;
-	t_map	*save;
-	t_map	*map;
+	unsigned int	i;
+	t_map			*save;
+	t_map			*map;
 
 	map = *map_ref;
 	map = map->head;

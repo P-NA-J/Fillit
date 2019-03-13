@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 16:59:29 by pauljull          #+#    #+#             */
-/*   Updated: 2019/03/11 22:07:48 by pauljull         ###   ########.fr       */
+/*   Updated: 2019/03/12 16:23:28 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ typedef struct		s_tetri
 	char			letter;
 	unsigned int	pos_x;
 	unsigned int	pos_y;
-	char			length;
-	char			width;
+	unsigned int	length;
+	unsigned int	width;
 	unsigned int	decal;
 	struct s_tetri	*next;
 	struct s_tetri	*prev;
@@ -44,8 +44,8 @@ typedef struct		s_tetri
 
 int					ft_error(void);
 int					ft_read(char **file, char **av);
-int					*database(void);
-int					check_file(t_tetri *tetri, int n_tetri);
+unsigned int		*database(void);
+int					check_file(t_tetri *tetri, unsigned int n_tetri);
 int					multi_check(t_tetri *tetri, t_map *map);
 t_map				*ft_lpb_map(t_map **map_ref, int width, int index);
 t_tetri				*ft_lpb_tetri(t_tetri **list);
@@ -66,7 +66,7 @@ void				print_map_final(char **print, int width);
 void				set_tetri_map(t_tetri **tetri, t_map **map);
 void				set_tetri(t_tetri *tetri);
 int					analyze_tetri_line(int tetri, int line);
-int					set_tetri_width(int tetri, int length);
+int					set_tetri_width(int tetri);
 int					set_tetri_length(int tetri);
 int					set_fblock_bit(int tetri, int block, int decal);
 t_tetri				*backtracking(t_tetri *tetri, t_map **map);

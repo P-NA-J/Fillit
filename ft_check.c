@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 14:57:39 by pauljull          #+#    #+#             */
-/*   Updated: 2019/03/11 21:47:57 by pauljull         ###   ########.fr       */
+/*   Updated: 2019/03/12 16:17:26 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		put_check(t_tetri *tetri, t_map *map)
 {
-	int i;
+	unsigned int	i;
 
 	i = 1;
 	if (tetri->width + tetri->decal > map->width)
@@ -33,12 +33,12 @@ int		put_check(t_tetri *tetri, t_map *map)
 	return (1);
 }
 
-int		check_file(t_tetri *tetri, int n_tetri)
+int		check_file(t_tetri *tetri, unsigned int n_tetri)
 {
-	int i;
-	int j;
-	int check;
-	int	*tab;
+	unsigned int	i;
+	unsigned int	j;
+	unsigned int	check;
+	unsigned int	*tab;
 
 	i = 0;
 	j = 0;
@@ -64,7 +64,7 @@ int		check_file(t_tetri *tetri, int n_tetri)
 
 int		multi_check(t_tetri *tetri, t_map *map)
 {
-	int i;
+	unsigned int	i;
 
 	i = 1;
 	if (tetri->width + tetri->decal > map->width)

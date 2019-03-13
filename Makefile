@@ -1,6 +1,6 @@
 NAME := fillit
 CC := gcc
-FLAGS := -Wall -Wextra -Wframe-larger-than=1024 -g
+FLAGS := -Wall -Wextra -Werror
 SRC := database.c \
 	   ft_check.c \
 	   ft_error.c \
@@ -9,13 +9,12 @@ SRC := database.c \
 	   main.c \
 	   map_gen.c \
 	   math.c \
-	   osef.c \
 	   parsing.c \
 	   print_map.c \
 	   setting_tetri.c \
 	   setting_map.c \
 	   solver.c \
-		
+
 OBJ := $(SRC:.c=.o)
 LIB := libft/libft.a
 
@@ -27,7 +26,7 @@ $(NAME): $(OBJ)
 libft:
 	make -C ./libft/
 
-%.o: ./source/%.c
+%.o: %.c
 	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
