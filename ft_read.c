@@ -15,7 +15,9 @@
 int	analyze_block(char *file)
 {
 	int i;
+	int hash;
 
+	hash = 0;
 	i = 0;
 	while (i < 20)
 	{
@@ -29,8 +31,12 @@ int	analyze_block(char *file)
 			if (file[i] != '\n')
 				return (0);
 		}
+		if (file[i] == '#')
+			hash += 1;
 		i += 1;
 	}
+	if (hash != 4)
+		return (0);
 	return (1);
 }
 
