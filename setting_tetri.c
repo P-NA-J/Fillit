@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 22:59:57 by pauljull          #+#    #+#             */
-/*   Updated: 2019/03/12 16:24:34 by pauljull         ###   ########.fr       */
+/*   Updated: 2019/03/13 13:59:12 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ int		set_tetri_width(int tetri)
 	int line;
 	int j;
 
-	line = set_fblock_bit(tetri, 1, 0) |
-	((set_fblock_bit(tetri, 2, 0) >> 4) |
-	((set_fblock_bit(tetri, 3, 0) >> 8) |
-	(set_fblock_bit(tetri, 4, 0) >> 12)));
+	line = set_fblock_bit(tetri, 1, 0)
+	| ((set_fblock_bit(tetri, 2, 0) >> 4)
+	| ((set_fblock_bit(tetri, 3, 0) >> 8)
+	| (set_fblock_bit(tetri, 4, 0) >> 12)));
 	j = analyze_tetri_line(line, 1);
 	return (j);
 }

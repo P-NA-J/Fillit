@@ -21,18 +21,25 @@ LIB := libft/libft.a
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(FLAGS) -o $(NAME) $^ $(LIB)
-
-libft:
-	make -C ./libft/
+	make -C libft
+	$(CC) $(FLAGS) -o $(NAME) $(OBJ) $(LIB)
 
 %.o: %.c
 	$(CC) $(FLAGS) -c $< -o $@
 
-clean:
+comp_libft:
+	make -C libft
+
+clean: clean_libft
 	rm -f $(OBJ)
 
-fclean: clean
+clean_libft:
+	make clean -C libft
+
+fclean_libft: clean_libft
+	rm -f libft/libft.a
+
+fclean: clean fclean_libft
 	rm -f $(NAME)
 
 re: fclean all
