@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 13:11:49 by pauljull          #+#    #+#             */
-/*   Updated: 2019/03/13 13:26:48 by pauljull         ###   ########.fr       */
+/*   Updated: 2019/03/15 15:13:26 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ int		convert_tetri(char *file, int decal)
 	int	tetri_j;
 
 	i = 0;
-	link = 1;
+	link = 0;
 	k = decal;
 	tetri_j = 0;
-	while (link <= 4 && i < 21)
+	while (link < 4)
 	{
 		if (file[i] == '#')
 		{
@@ -60,8 +60,6 @@ int		convert_tetri(char *file, int decal)
 			k += 1;
 		i += 1;
 	}
-	if (link > 4)
-		return (ft_error());
 	return (tetri_j);
 }
 

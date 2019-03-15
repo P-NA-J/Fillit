@@ -6,7 +6,7 @@
 /*   By: pauljull <pauljull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 13:39:51 by pauljull          #+#    #+#             */
-/*   Updated: 2019/03/13 17:59:53 by pauljull         ###   ########.fr       */
+/*   Updated: 2019/03/15 15:13:46 by pauljull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,30 @@ void	ft_free_map(t_map *map)
 	}
 }
 
-void	ft_free(t_tetri *tetri, t_map *map, char *path)
+void	ft_free_tab_char(char **print, unsigned int width)
 {
+	unsigned int i;
+
+	i = 0;
+	while (i < width)
+	{
+		ft_bzero(print[i], width);
+		free(print[i]);
+		i += 1;
+	}
+	free(print);
+}
+
+void	ft_free(t_tetri *tetri, t_map *map, char *path, char **print)
+{
+	ft_free_tab_char(print, map->width);
 	free_tetri_list(tetri);
-	free_map_list(map);
+	ft_free_map(map);
 	ft_bzero(path, ft_strlen(path));
 	free(path);
 }
 
-int	main(int ac, char **av)
+int		main(int ac, char **av)
 {
 	unsigned int	n_tetri;
 	char			*path;
@@ -84,6 +99,6 @@ int	main(int ac, char **av)
 		map = grow_up_map(map, tetri);
 	print = print_tab_gen(tetri, map->width);
 	print_map_final(print, map->width);
-	ft_free(tetri, map, path);
+	ft_free(tetri, map, path, print);
 	return (0);
 }
